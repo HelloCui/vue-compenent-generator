@@ -1,24 +1,22 @@
-/**
- * 公共配置
- */
-var path = require('path');
-function resolve (dir) {
+var path = require('path')
+const {
+    VueLoaderPlugin
+} = require('vue-loader')
+
+function resolve(dir) {
     return path.join(__dirname, '..', dir)
 }
 
 module.exports = {
-    // 加载器
     module: {
-        // https://doc.webpack-china.org/guides/migrating/#module-loaders-module-rules
-        rules: [
-            {
-                // https://vue-loader.vuejs.org/en/configurations/extract-css.html
+        rules: [{
                 test: /\.vue$/,
                 loader: 'vue-loader',
                 options: {
+                    preserveWhitespace: false,
                     loaders: {
-                        css: 'vue-style-loader!css-loader',
-                        less: 'vue-style-loader!css-loader!less-loader'
+                        css: 'vue-style-loader!css-loader!postcss-loader',
+                        less: 'vue-style-loader!css-loader!postcss-loader!less-loader'
                     },
                     postLoaders: {
                         html: 'babel-loader'
@@ -27,14 +25,20 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                loader: 'babel-loader', exclude: /node_modules/
+                loader: 'babel-loader',
+                exclude: /node_modules/
             },
             {
                 test: /\.css$/,
                 use: [
                     'style-loader',
-                    'css-loader',
-                    'autoprefixer-loader'
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1
+                        }
+                    },
+                    'postcss-loader'
                 ]
             },
             {
@@ -42,26 +46,26 @@ module.exports = {
                 use: [
                     'style-loader',
                     'css-loader',
+                    'postcss-loader',
                     'less-loader'
                 ]
             },
             {
-                test: /\.scss$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'sass-loader?sourceMap'
-                ]
+                test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
+                loader: 'url-loader?limit=8192'
             },
-            { test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/, loader: 'url-loader?limit=8192'},
-            { test: /\.(html|tpl)$/, loader: 'html-loader' }
+            {
+                test: /\.(html|tpl)$/,
+                loader: 'html-loader'
+            }
         ]
     },
     resolve: {
         extensions: ['.js', '.vue'],
         alias: {
             'vue': 'vue/dist/vue.esm.js',
-            '@': resolve('src')
+            '@': resolve('src'),
+            'assets': resolve('src/assets')
         }
     }
 };

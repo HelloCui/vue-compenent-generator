@@ -1,7 +1,11 @@
-.*
-*.md
-*.yml
-build/
+.DS_Store
+.idea/
 node_modules/
-test/
+local-data/
+npm-debug.log
+npm-debug.log.*
+src/
+examples/
+build/
 gulpfile.js
+TODO.md

@@ -9,42 +9,14 @@ module.exports = {
             "type": "string",
             "required": false,
             "message": "Project description",
-            "default": "A Vue.js project"
+            "default": "A Vue.js Lib"
         },
         "author": {
             "type": "string",
             "message": "Author"
-        },
-        "platform": {
-            "type": "list",
-            "message": "Platform",
-            "choices": [{
-                    "name": "cordova",
-                    "value": "cordova",
-                    "short": "cordova"
-                },
-                {
-                    "name": "微信",
-                    "value": "wechat",
-                    "short": "wechat"
-                }
-            ]
-        },
-        "identifier": {
-            "when": "platform == 'cordova'",
-            "type": "string",
-            "required": false,
-            "message": "Project identifier",
-            "default": ""
-        },
-        "vux": {
-            "type": "confirm",
-            "message": "是否使用vux?"
         }
     },
-    "filters": {
-        "CubeModule.json": "platform == 'cordova'"
-    },
-    "skipInterpolation": "src/**/!(App).vue",
+    "filters": {},
+    "skipInterpolation": ["src/**/!(App).vue", "docs/**/*"],
     "completeMessage": "To get started:\n\n  {{^inPlace}}cd {{destDirName}}\n  {{/inPlace}}npm install\n  npm run dev"
 };

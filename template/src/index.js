@@ -1,22 +1,21 @@
-import confirmModal from './components/confirm';
+// 引入样式
+import indexLess from './assets/styles/index.less'
 
-const wcsLib = {
-    confirmModal
+const
+    // 一般组件
+    components = {},
+    // 单例组件，通过方法直接调用，如：toast
+    methods = {}
+
+const install = function(Vue, opts = {}) {
+    Object.keys(components).forEach((key) => {
+        Vue.component(key, components[key])
+    })
+    Object.keys(methods).forEach((key) => {
+        Vue.prototype['$' + key] = methods[key]
+    })
 };
 
-const install = function (Vue, opts = {}) {
-
-    Object.keys(wcsLib).forEach((key) => {
-        Vue.component(key, wcsLib[key]);
-    });
-
-    //TODO 常用组件的挂在vue原型上
-    // Vue.prototype.$loading = loading;
-};
-
-// auto install
-// if (typeof window !== 'undefined' && window.Vue) {
-//     install(window.Vue);
-// }
-
-module.exports = Object.assign(wcsLib, {install});   // eslint-disable-line no-undef
+export default Object.assign(components, {
+    install
+})
