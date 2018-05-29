@@ -3,6 +3,7 @@ var gulp = require('gulp'),
     shell = require('gulp-shell')
 
 gulp.task('exec',
+    // 'nrm use midea': 使用私有源
     shell.task(['nrm use midea', 'npm publish'])
 )
 

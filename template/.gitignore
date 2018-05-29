@@ -5,3 +5,5 @@ local-data/
 npm-debug.log
 npm-debug.log.*
 dist/
+/docs/demos/index.js
+/docs/mds/index.js
