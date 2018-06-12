@@ -4,6 +4,7 @@ import docs from '../mds';
 import demos from '../demos';
 import demoHome from '../demos/home';
 import proIntro from '../../README.md';
+import changelog from '../../CHANGELOG.md';
 import './utils/iframe-router';
 
 const registerRoute = (isDemo) => {
@@ -58,6 +59,13 @@ const registerRoute = (isDemo) => {
             path: '*',
             meta: {
                 name: 'intro'
+            }
+        }, {
+            name: 'changelog',
+            component: changelog,
+            path: '/changelog',
+            meta: {
+                name: 'changelog'
             }
         })
     }

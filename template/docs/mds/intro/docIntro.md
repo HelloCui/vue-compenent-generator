@@ -30,11 +30,11 @@ npm run dev
                 // name: '分组1',
                 // 菜单项集合，会显示到菜单，并且生成对应的路由
                 list: [{
-                    // 菜单所对应的路由，同时也表示页面文件路径
-                    path: '/intro',
+                    // 菜单所对应的路由，同时也表示页面文件路径，ps:项目介绍绑定README.md，不对应文件路径
+                    path: '/',
                     // 菜单标题，副标题用-隔开：主标题 - 副标题
                     title: '项目介绍',
-                    // 如果noExample设为true，代表这个页面没有独立示例，将不会生成示例菜单和路由
+                    // 代表这个页面没有独立示例，不会生成示例页面和路由
                     noExample: true
                 }, {
                     path: '/intro/dirIntro',
@@ -45,8 +45,9 @@ npm run dev
                     title: '创建文档与示例',
                     noExample: true
                 }, {
-                    path: '/todo',
-                    title: 'TODO',
+                    // 项目介绍绑定CHANGELOG.md，不对应文件路径
+                    path: '/changelog',
+                    title: '更新日志',
                     noExample: true
                 }]
             }]
@@ -54,8 +55,6 @@ npm run dev
 }
 
 ```
-> `项目介绍` 和 `TODO` 页面是预设的路由，所以path并没有对应到它们的文件目录，他们分别对应的文件是项目根目录的 _README.md_ 和 _TODO.md_。还有一个预设页面是示例的home页面，只要示例页面的路由没有匹配成功，都会定位到这个页面，它对应的文件路径是 _demos/home.vue_
-
 > 工作原理：<br>
 路由：在webpack启动服务前，会专门启动一个build-entry任务，该任务会递归遍历出 _demos_ 中的所有vue文件和 _mds_ 中的所有md文件，将其路径收集起来，生成这两个目录下的 _index.js_ 文件。服务启动后（虽然是在同一个服务启动，但文档和示例是从两个入口进入，所以可以说是两个独立的网页），会运行注册路由的函数，该函数会遍历 _doc.config.js_ 的 `nav`, 根据 `path` 去刚才生成的 _index.js_ 找到对应的项，处理后输出路由。 <br>
 菜单：文档和示例的菜单组件数据来源都是遍历 _doc.config.js_ 的 `nav` 得到，唯一不同的是示例会将 `noExample: true` 的数据过滤掉。

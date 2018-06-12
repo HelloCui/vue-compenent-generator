@@ -9,7 +9,7 @@ export default {
             // name: '分组1',
             // 菜单项集合，会显示到菜单，并且生成对应的路由
             list: [{
-                // 菜单所对应的路由，同时也表示页面文件路径
+                // 菜单所对应的路由，同时也表示页面文件路径，ps:项目介绍绑定README.md，不对应文件路径
                 path: '/',
                 // 菜单标题，副标题用-隔开：主标题 - 副标题
                 title: '项目介绍',
@@ -22,6 +22,11 @@ export default {
             }, {
                 path: '/intro/docIntro',
                 title: '创建文档与示例',
+                noExample: true
+            }, {
+                // 项目介绍绑定CHANGELOG.md，不对应文件路径
+                path: '/changelog',
+                title: '更新日志',
                 noExample: true
             }]
         }]

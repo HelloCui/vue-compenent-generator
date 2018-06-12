@@ -2,9 +2,7 @@
 
 ```
 .
-│  gulpfile.js                                // gulp文件，用于发布                    
 │  README.md                                  // 项目介绍文件
-│  TODO.md                                    // 用于记录接下来要做的事情
 │  
 ├─build                                       // 开发、打包配置文件目录，无需关注
 │  │  webpack.base.config.js                  // webpack基本配置文件
@@ -13,6 +11,8 @@
 │  │  
 │  └─bin                                      // 非webpack配置文件目录，可直接用node运行
 │          build-entry.js                     // 入口生成文件，用于自动生成文档和示例路由文件
+│          gen-changelog.js                   // 更新日志生成脚本
+│          release.js                         // 版本发布脚本
 │          
 ├─dist                                        // 打包后的文件生成到这个目录，无需关注
 │      
