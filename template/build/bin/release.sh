@@ -1,8 +1,5 @@
 set -e
 
-# 切换源
-nrm use midea
-
 current_v=`node -p "require('./package.json').version"`
 
 if [[ -z $1 ]]; then
