@@ -24,6 +24,10 @@ export default {
                 title: '创建文档与示例',
                 noExample: true
             }, {
+                path: '/intro/commitIntro',
+                title: '代码提交规范',
+                noExample: true
+            }, {
                 // 项目介绍绑定CHANGELOG.md，不对应文件路径
                 path: '/changelog',
                 title: '更新日志',

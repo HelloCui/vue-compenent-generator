@@ -1,5 +1,8 @@
 set -e
 
+# 切换源
+nrm use midea
+
 current_v=`node -p "require('./package.json').version"`
 
 if [[ -z $1 ]]; then
@@ -14,13 +17,22 @@ echo "Releasing $VERSION ..."
 # 打包代码
 npm run build
 
-# git
+# 提交dist
 git add -A
 git add -f dist/*.*
 git commit -m "build: build $VERSION"
-npm run gen:changelog
+
+# 更新版号本并提交
 npm version $VERSION --message "build: release $VERSION"
+
+# 生成changelog并提交
+npm run gen:changelog
+git add -A
+git commit -m "docs: change log $VERSION"
+
+# 推送远程
 git push origin refs/tags/v$VERSION
 git push
 
+# 发布
 # npm publish
