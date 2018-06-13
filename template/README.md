@@ -14,7 +14,7 @@ npm run dev
 # 打包代码
 npm run build
 
-# 发布到npm（自动打包、发布、更新版本、提交git、打tag、生成更新日志、发布）
+# 发布到npm（自动打包、更新版本、生成更新日志、打tag、发布）
 npm run release
 
 # 标准化提交
